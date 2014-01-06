@@ -26,6 +26,7 @@ angular.module('ngBootstrap', []).directive('input', function ($compile, $parse)
 			options.showDropdowns = ($attributes.showDropdowns == 'true' || $attributes.showDropdowns === true);
 			options.showWeekNumbers = ($attributes.showWeekNumbers == 'true' || $attributes.showWeekNumbers === true);
 			options.timePicker = ($attributes.timePicker == 'true' || $attributes.timePicker === true);
+			options.condenseSameDay = ($attributes.condenseSameDay == 'true' || $attributes.condenseSameDay === true);
 			options.timePickerIncrement = parseInt($attributes.timePickerIncrement, 10);
 			options.timePicker12Hour = ($attributes.timePicker12Hour == 'true' || $attributes.timePicker12Hour === true);
 			options.opens = $attributes.opens || 'right';
