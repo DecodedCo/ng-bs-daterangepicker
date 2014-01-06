@@ -65,6 +65,29 @@ describe('the daterange directive', function () {
 		expect(element.data('daterangepicker').ranges.Yesterday[0].format('YYYY-MM-DD')).toBe(moment().subtract('days', 1).format('YYYY-MM-DD'));
 		expect(element.data('daterangepicker').ranges.Yesterday[1].format('YYYY-MM-DD')).toBe(moment().subtract('days', 1).format('YYYY-MM-DD'));
 	});
-	
-	
+
+	// Angular trims the values of attributes in the $attribute object, this test confirms it's still
+	// possible to send spaces around the separator argument
+	it('allows spaces in separator attribute', function () {
+		var element = $ngCompile('<input type="daterange" ng-model="dates" separator=" to ">')($ngRootScope),
+			format = 'L',
+			startDate = '2013-09-10',
+			endDate = '2013-09-20';
+		$ngRootScope.dates = { startDate: moment(startDate), endDate: moment(endDate) };
+
+		expect(element.data('daterangepicker').separator).toBe(' to ');
+	});
+
+	// Because of changes made to satisfy the previous test, want to be sure that normalized attributes
+	// are still accessible
+	it('can read the normalized separator attribute', function () {
+		var element = $ngCompile('<input type="daterange" ng-model="dates" data-separator="/">')($ngRootScope),
+			format = 'L',
+			startDate = '2013-09-10',
+			endDate = '2013-09-20';
+		$ngRootScope.dates = { startDate: moment(startDate), endDate: moment(endDate) };
+
+		expect(element.data('daterangepicker').separator).toBe('/');
+	});
+
 });
