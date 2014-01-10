@@ -34,6 +34,7 @@ angular.module('ngBootstrap', []).directive('input', function ($compile, $parse)
 			options.applyClass = $attributes.applyClass || '';
 			options.cancelClass = $attributes.cancelClass || '';
 			options.locale = $attributes.locale || {};
+			options.parentEl = ($attributes.parentEl && angular.element($attributes.parentEl)) || null;
 
 			ngModel.$formatters.unshift(function (modelValue) {
 				if (!modelValue) return '';
